@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+
+const testimonials = await getCollection('testimonials');
+---
+
+<section id="testimonials" class="py-[var(--section-py)] bg-[var(--color-bg)]" aria-labelledby="testimonials-heading">
+  <div class="container-narrow">
+    <h2 id="testimonials-heading" class="text-[var(--text-4xl)] font-bold text-[var(--color-text)] mb-12 text-center">
+      Client testimonials
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" role="list">
+      {testimonials.length > 0 ? testimonials.map((entry) => (
+        <blockquote class="bg-white rounded-xl p-8 shadow-sm border border-[var(--color-slate)]/10" role="listitem" key={entry.id}>
+          <p class="text-[1rem] text-[var(--color-text)] leading-relaxed mb-4">"{entry.data.quote}"</p>
+          <cite class="text-[var(--color-text-muted)] font-semibold not-italic block">
+            — {entry.data.clientName}, {entry.data.suburb}
+          </cite>
+          <p class="mt-2 text-[var(--color-forest)] font-semibold" aria-label={`Rating ${entry.data.rating} out of 5`}>
+            {'★'.repeat(entry.data.rating)}{'☆'.repeat(5 - entry.data.rating)}
+          </p>
+        </blockquote>
+      )) : (
+        <p class="col-span-full text-center text-[var(--color-text-muted)]">No testimonials yet. Add content via the CMS.</p>
+      )}
+    </div>
+  </div>
+</section>

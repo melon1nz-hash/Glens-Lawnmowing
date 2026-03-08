@@ -1,0 +1,16 @@
+---
+import Logo from './Logo.astro';
+---
+
+<header class="sticky top-0 z-50 w-full bg-[var(--color-white)] border-b border-[var(--color-forest)]/20 shadow-sm">
+  <div class="container-narrow flex flex-wrap items-center justify-between gap-4 py-3" style="min-height: var(--header-h);">
+    <Logo />
+    <nav class="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8" aria-label="Main navigation">
+      <a href="#services" class="text-[1rem] font-semibold text-[var(--color-slate-dark)] hover:text-[var(--color-forest)] no-underline hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-forest)]">Services</a>
+      <a href="#portfolio" class="text-[1rem] font-semibold text-[var(--color-slate-dark)] hover:text-[var(--color-forest)] no-underline hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-forest)]">Portfolio</a>
+      <a href="#testimonials" class="text-[1rem] font-semibold text-[var(--color-slate-dark)] hover:text-[var(--color-forest)] no-underline hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-forest)]">Testimonials</a>
+      <a href="#contact" class="text-[1rem] font-semibold text-[var(--color-slate-dark)] hover:text-[var(--color-forest)] no-underline hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-forest)]">Contact Us</a>
+      <a href="tel:0800453676" class="text-[1rem] font-bold text-[var(--color-forest)] no-underline hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-forest)]">0800 GLENS LAWN</a>
+    </nav>
+  </div>
+</header>

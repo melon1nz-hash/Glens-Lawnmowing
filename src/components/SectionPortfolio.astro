@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+
+const portfolio = await getCollection('portfolio');
+/** Portfolio images from CMS live in public/uploads; we use img for dynamic paths. Use Astro Image when assets are in src/assets. */
+---
+
+<section id="portfolio" class="py-[var(--section-py)] bg-[var(--color-bg-alt)]" aria-labelledby="portfolio-heading">
+  <div class="container-narrow">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-10">
+      <h2 id="portfolio-heading" class="text-[var(--text-4xl)] font-bold text-[var(--color-text)]">
+        Portfolio
+      </h2>
+      <a href="#portfolio" class="text-[1rem] font-semibold text-[var(--color-forest)] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-forest)]">See all</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
+      {portfolio.length > 0 ? portfolio.map((entry) => (
+        <article class="rounded-xl overflow-hidden bg-white shadow-sm border border-[var(--color-slate)]/10" role="listitem" key={entry.id}>
+          <div class="aspect-[4/3] bg-[var(--color-slate)]/10 flex items-center justify-center">
+            {entry.data.image ? (
+              <img
+                src={entry.data.image}
+                alt={entry.data.title}
+                width={400}
+                height={300}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <span class="text-[var(--color-text-muted)] font-medium text-center px-4">No image</span>
+            )}
+          </div>
+          <div class="p-6">
+            <h3 class="text-[var(--text-xl)] font-bold text-[var(--color-text)] mb-2">{entry.data.title}</h3>
+            <p class="text-[1rem] text-[var(--color-text-muted)] leading-relaxed">{entry.data.description}</p>
+          </div>
+        </article>
+      )) : (
+        <p class="col-span-full text-center text-[var(--color-text-muted)]">No portfolio items yet. Add content via the CMS.</p>
+      )}
+    </div>
+  </div>
+</section>

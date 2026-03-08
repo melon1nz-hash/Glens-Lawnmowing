@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+
+const services = await getCollection('services');
+const iconMap: Record<string, string> = {
+  mowing: '✂',
+  trimming: '🌿',
+  edging: '⬡',
+  default: '🌱',
+};
+---
+
+<section id="services" class="py-[var(--section-py)] bg-[var(--color-bg)]" aria-labelledby="services-heading">
+  <div class="container-narrow">
+    <h2 id="services-heading" class="text-[var(--text-4xl)] font-bold text-[var(--color-text)] mb-12 text-center">
+      Our premium services
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+      {services.length > 0 ? services.map((entry) => (
+        <article class="bg-white rounded-xl p-8 shadow-sm border border-[var(--color-slate)]/10 text-center" key={entry.id}>
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-forest)]/10 flex items-center justify-center text-2xl" aria-hidden="true">
+            {iconMap[entry.data.iconName] ?? iconMap.default}
+          </div>
+          <h3 class="text-[var(--text-2xl)] font-bold text-[var(--color-text)] mb-2">{entry.data.title}</h3>
+          <p class="text-[1rem] text-[var(--color-text-muted)] leading-relaxed">{entry.data.description}</p>
+        </article>
+      )) : (
+        <p class="col-span-full text-center text-[var(--color-text-muted)]">No services yet. Add content via the CMS.</p>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+# Decap CMS – Glens Lawnmowing (North Shore)
+# Data stored in src/content/ as Markdown with frontmatter
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: services
+    label: Services
+    folder: src/content/services
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Icon Name, name: iconName, widget: string, hint: "e.g. mowing, trimming, edging" }
+
+  - name: testimonials
+    label: Testimonials
+    folder: src/content/testimonials
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: Client Name, name: clientName, widget: string }
+      - { label: North Shore Suburb, name: suburb, widget: string }
+      - { label: Quote, name: quote, widget: text }
+      - { label: Rating, name: rating, widget: number, min: 1, max: 5, value_type: "int" }
+
+  - name: portfolio
+    label: Portfolio
+    folder: src/content/portfolio
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Image, name: image, widget: image, required: false }
+      - { label: Description of property, name: description, widget: text }
